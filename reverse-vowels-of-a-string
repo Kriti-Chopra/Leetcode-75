@@ -1,0 +1,36 @@
+class Solution {
+    public String reverseVowels(String s) {
+        // to char array as strings are immutable 
+        char[] arr = s.toCharArray();
+        int start=0; int end=s.length()-1;
+        while(start<end){
+            boolean isStartVowel = isVowel(arr[start]);
+            boolean isEndVowel = isVowel(arr[end]);
+
+            //move if not vowel
+            if(!isStartVowel)  ++start;
+            if(!isEndVowel) --end;
+
+            //swap if both are vowels
+            if(isStartVowel && isEndVowel){
+                char extra = arr[start];
+                arr[start] = arr[end];
+                arr[end] = extra;
+                ++start; --end; 
+            }
+        }
+
+        //convert back to String
+        StringBuilder st = new StringBuilder();
+        for(int i=0;i<arr.length;++i){
+            st.append(arr[i]);
+        }
+        return st.toString();
+    }
+
+    public boolean isVowel(char c){
+        String vowels ="aeiouAEIOU";
+        if(vowels.indexOf(c)>=0) return true;
+        return false;
+    }
+}
