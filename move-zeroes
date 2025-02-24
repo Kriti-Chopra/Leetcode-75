@@ -1,0 +1,19 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int i=0;
+        int nonZero=-1;
+
+        //keep last non-zero index and swap when non-zero number is found
+        //zeroes will come to end
+        while (i<nums.length){
+            if(nums[i]!=0){
+                //swap with last non-zero +1th index
+                int n= nums[i];
+                nums[i]= nums[nonZero+1];
+                nums[nonZero+1]=n;
+                ++nonZero;
+            }
+            ++i;
+        }
+    }
+}
