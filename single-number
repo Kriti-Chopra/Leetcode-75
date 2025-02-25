@@ -1,0 +1,10 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+        //xor between same number returns zero 
+        int result =0;
+        for(int i=0;i<nums.length;++i) {
+            result= result^nums[i];
+        }
+        return result;
+    }
+}
