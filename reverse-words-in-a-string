@@ -1,0 +1,29 @@
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder currentString= new StringBuilder();
+        Stack<StringBuilder> stringStack = new Stack<StringBuilder>();
+        for(char cur :s.toCharArray()){
+            if(cur==' '){
+                if(currentString.toString().length()>0) {
+                    System.out.println("in stack "+currentString.toString());
+                    stringStack.push(currentString);
+                }
+                currentString= new StringBuilder();
+            }
+            else{
+                currentString.append(cur);
+            }
+        }
+        if(currentString.length()==0) currentString.append(stringStack.pop());
+        
+        System.out.println(currentString);
+        while(!stringStack.isEmpty()){
+                currentString.append(" ");
+                currentString.append(stringStack.pop());
+                System.out.println("adding " + currentString);
+        }
+
+        return currentString.toString();
+
+    }
+}
