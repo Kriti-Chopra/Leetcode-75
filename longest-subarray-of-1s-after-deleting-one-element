@@ -1,0 +1,24 @@
+class Solution {
+    public int longestSubarray(int[] nums) {
+        int max = 0;  // Maximum count of 1s found
+        int cur = 0;  // Current count of 1s
+        int i = 0;    // Non-zero pointer
+        int j = -1;   // Last encountered zero
+
+        while (i < nums.length) {
+            if (nums[i] == 0) {
+                if (cur > max) max = cur;  // Update max if current count is greater
+                cur = i - j - 1;           // Count of 1s between the last 0 and current 0
+                j = i;                    // Update last zero index
+                ++i;
+            } else {
+                ++cur;  // Increment count for consecutive 1s
+                ++i;
+            }
+        }
+        if (cur > max) max = cur;  // Final check for the last segment
+        if (j == -1) return nums.length - 1;  // Edge case: no zero in the array
+
+        return max;
+    }
+}
