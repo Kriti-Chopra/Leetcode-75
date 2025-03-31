@@ -1,0 +1,17 @@
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        int[] result = new int[temperatures.length]; // To store the answer for each day
+        Stack<Integer> ms = new Stack<>();           // Stack to keep track of day indices
+        ms.push(0);                                   // Start with the first day
+
+        for (int i = 1; i < temperatures.length; ++i) {
+            // Check if the current temperature is warmer than the one on top of the stack
+            while (!ms.isEmpty() && temperatures[i] > temperatures[ms.peek()]) {
+                result[ms.peek()] = i - ms.peek(); // How many days to wait for a warmer temperature
+                ms.pop();                          // Remove the day index because we found its answer
+            }
+            ms.push(i); // Add the current day index to the stack
+        }
+        return result; // Return the final answer
+    }
+}
