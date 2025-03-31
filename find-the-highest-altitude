@@ -1,0 +1,12 @@
+class Solution {
+    public int largestAltitude(int[] gain) {
+        int max = 0; // Maximum altitude reached
+        int cur = 0; // Current altitude
+
+        for (int g : gain) {
+            cur += g; // Update current altitude
+            if (cur > max) max = cur; // Update max if current is higher
+        }
+        return max;
+    }
+}
