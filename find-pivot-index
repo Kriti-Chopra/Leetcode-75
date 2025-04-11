@@ -1,0 +1,28 @@
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int[] left = new int[nums.length];  // Array to store prefix sum from the left
+        int[] right = new int[nums.length]; // Array to store suffix sum from the right
+
+        int sum = 0;
+
+        // Build prefix sum array (left)
+        for (int i = 0; i < nums.length; ++i) {
+            sum += nums[i];
+            left[i] = sum;  // left[i] contains sum of nums[0] to nums[i]
+        }
+
+        sum = 0;
+        // Build suffix sum array (right)
+        for (int i = nums.length - 1; i >= 0; --i) {
+            sum += nums[i];
+            right[i] = sum; // right[i] contains sum of nums[i] to nums[nums.length - 1]
+        }
+
+        // Check for the index where left and right sums are equal
+        for (int i = 0; i < nums.length; ++i) {
+            if (left[i] == right[i]) return i;  // Found the pivot index
+        }
+
+        return -1;  // No pivot index found
+    }
+}
