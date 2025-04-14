@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int i = 0; // Pointer for string s
+        int j = 0; // Pointer for string t
+
+        // Loop through both strings until one ends
+        while(i < s.length() && j < t.length()) {
+            // If characters match, move pointer i (i.e., look for next char in s)
+            if(t.charAt(j) == s.charAt(i)) {
+                i++;
+            }
+            // Always move pointer j (scan through t)
+            j++;
+        }
+
+        // If we've checked all characters in s, it's a subsequence
+        return i == s.length();
+    }
+}
