@@ -1,0 +1,15 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int profit = 0;
+        int curVal=prices[0];
+
+        //greedy approach, sell the stock as soon as it becomes lower than the buying price
+        for(int i=1;i<prices.length;++i){
+            if(prices[i]>curVal) {
+                profit+=prices[i]-curVal;
+            }
+            curVal=prices[i];
+        }
+        return profit;
+    }
+}
